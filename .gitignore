@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build / framework
+dist/
+.output/
+.vercel/
+.tanstack/
+.nitro/
+.waku/
+*.tsbuildinfo
+
+# Env & secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+credentials/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs & local data
+*.log
+npm-debug.log*
+.pglite/
+data/
+tmp/
+/tmp/
+
+# Agent / local QA (not part of public product)
+screenshots/
+attachments/
+artifacts/
+.release/
+.project_id
+.node_modules.lock
+AGENTS.md
+.grok/
+
+# Test / coverage
+coverage/
+playwright-report/
+test-results/

@@ -1,0 +1,8 @@
+AOS Hive Brain
+Copyright (c) 2026 AdventureNLearn
+
+Public system brief and interactive reasoning demo.
+OPSEC-clean public ship — see docs/OPSEC.md.
+
+Parts of the auth scaffold and PWA helpers originate from the Grok Build
+app-builder template and are adapted for public release (secrets removed).
