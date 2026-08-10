@@ -33,7 +33,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 .pglite/
-data/
+/data/
 tmp/
 /tmp/
 
