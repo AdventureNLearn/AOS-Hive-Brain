@@ -1,45 +1,54 @@
 # Architecture (public)
 
+Written for builders who may not live in frameworks all day.
+
+**Release 0.2.0** — 20 shapes · 5 rooms · shorter/fuller stories · node inspect during play · humanized copy.
+
 ## Surfaces
 
-| Route | Purpose |
+| Route | What you see |
 | --- | --- |
-| `/` | Public system brief, integrity kernel, clean seed download |
-| `/hive` | Interactive Hive workspace — 3D + map reasoning formations |
-| `/login` | Optional federated auth (env-gated) |
+| `/` | Public system brief — purpose, integrity, eight shapes, clean seed |
+| `/hive` | Interactive Hive — 3D + map thinking shapes with decision playback |
+| `/login` | Optional sign-in (only if auth env is turned on) |
 
-## Stack
+## Stack (short)
 
-- React 19 + TypeScript
-- Vite 8 + TanStack Start / Router / Query
-- Tailwind CSS v4
-- Three.js (Hive 3D scene)
-- Better Auth + PGLite (local) / Postgres (deploy)
-- Client-side ZIP for the clean seed pack (no server secrets)
+- React + TypeScript UI
+- Vite + TanStack Start routing
+- Tailwind for styling
+- Three.js for the 3D Hive scene
+- Optional auth + local/Postgres database
+- In-memory decision graphs for every formation (`src/lib/decision/`)
 
-## Hive formations
+## Eight formations (all decision-backed)
 
-Eight orchestration modes with distinct geometries:
+| Shape | Plain-language idea |
+| --- | --- |
+| Honeycomb | Look around first |
+| Mission Spine | One mission to ship (includes a conflict demo) |
+| Integrity Triangle | Evidence / Inference / Assumption |
+| Claim Diamond | Supported / Unproven / Disputed / Human call |
+| Sense → Reason → Build | Look, think, then build |
+| 4-Agent Lanes | Parallel roles, one honest merge |
+| Field Helix | Observe → claim → talk → progress |
+| Star Burst | One integrity core, public product rays |
 
-1. Honeycomb  
-2. Mission Spine  
-3. Integrity Triangle  
-4. Claim Diamond  
-5. Sense → Reason → Build  
-6. 4-Agent Lanes  
-7. Field Helix  
-8. Star Burst  
+PLAY on any shape replays a recorded decision chain (question → choice → status → optional human sign-off).
 
-Shared controls: orbit, zoom (wheel / pinch / buttons), 3D ↔ map toggle, play/pause reasoning flow.
+## Decision substrate
 
-## Data philosophy
+| File | Role |
+| --- | --- |
+| `docs/DECISION-SCHEMA.md` | One-page schema in plain English |
+| `src/lib/decision/schema.ts` | Types |
+| `src/lib/decision/store.ts` | Record, link, conflict, human call, export |
+| `src/lib/decision/formation-graphs.ts` | Demo graphs for all eight shapes |
 
-- Public product code and principle-level content only
-- No private research trees in the public UI
-- Seed pack is markdown-only and OPSEC-audited
+**Pattern-only.** Inspired by decision-intelligence graphs. Not a full knowledge-graph platform. Not auto-truth. Human final call is a recorded event.
 
 ## Deploy notes
 
-- Production build uses Nitro `vercel` preset (build-only; not active in dev)
-- Inject `BETTER_AUTH_*`, `DATABASE_URL`, and `GROK_AUTH_*` via the host — never commit them
-- `VITE_AUTH_ENABLED=false` runs the brief + Hive demo without OAuth
+- Production build targets Vercel (Nitro preset, build-only)
+- Put secrets in the host environment — never in the repo
+- `VITE_AUTH_ENABLED=false` runs the brief + Hive without OAuth

@@ -5,7 +5,7 @@ import { useCurrentUserState } from "@/lib/auth/use-current-user";
 
 const nav = [
   { href: "#north-star", label: "North star" },
-  { href: "#layers", label: "Layers" },
+  { href: "#shapes", label: "Shapes" },
   { href: "#integrity", label: "Integrity" },
   { href: "#seed", label: "Clean seed" },
 ] as const;
@@ -45,7 +45,7 @@ export function SiteHeader() {
         <div className="flex items-center gap-2">
           <Link
             to="/hive"
-            className="focus-ring inline-flex items-center rounded-md border border-accent/40 bg-accent/15 px-3 py-1.5 text-xs font-medium text-fg shadow-[0_0_24px_-10px_var(--color-glow-violet)]"
+            className="focus-ring inline-flex min-h-10 items-center rounded-md border border-accent/40 bg-accent/15 px-3 py-1.5 text-xs font-medium text-fg shadow-[0_0_24px_-10px_var(--color-glow-violet)]"
           >
             Live Hive
           </Link>

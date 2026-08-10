@@ -1,5 +1,6 @@
 /**
  * Public Hive universe — principle-level nodes only.
+ * Voice: a careful high-school senior should understand every public label.
  * No private history, operators inventory, or personal data.
  */
 
@@ -23,33 +24,6 @@ export type HiveNode = {
   blurb: string;
 };
 
-export type HiveModeId =
-  | "honeycomb"
-  | "mission-spine"
-  | "integrity-triangle"
-  | "claim-diamond"
-  | "sense-reason-build"
-  | "four-agent"
-  | "field-helix"
-  | "star-burst";
-
-export type HiveMode = {
-  id: HiveModeId;
-  title: string;
-  subtitle: string;
-  description: string;
-};
-
-export type ReasonStep = {
-  id: string;
-  t: number; // seconds into mode play
-  title: string;
-  detail: string;
-  focusNodeIds: string[];
-  edgePairs?: [string, string][];
-  statusTone?: ClaimStatus;
-};
-
 export const HIVE_NODES: HiveNode[] = [
   {
     id: "hive",
@@ -57,39 +31,39 @@ export const HIVE_NODES: HiveNode[] = [
     short: "HIVE",
     kind: "core",
     color: "#c4b5fd",
-    blurb: "Shared integrity core. Public products radiate from here.",
+    blurb: "The shared center of the building. Public tools grow out from here.",
   },
   {
     id: "aos",
-    label: "AOS control",
-    short: "AOS",
+    label: "Workshop rules",
+    short: "RULES",
     kind: "layer",
     color: "#a78bfa",
-    blurb: "Control plane — purpose and product discipline.",
+    blurb: "The floor for purpose and product discipline — the house rules.",
   },
   {
     id: "know",
-    label: "Knowledge",
+    label: "Knowledge floor",
     short: "KNOW",
     kind: "layer",
     color: "#22d3ee",
-    blurb: "Linked sources that compound — wiki over chat amnesia.",
+    blurb: "Where notes and sources live so work does not vanish when a chat ends.",
   },
   {
     id: "archive",
-    label: "Archive",
-    short: "ARCH",
+    label: "Archive floor",
+    short: "SAVE",
     kind: "layer",
     color: "#94a3b8",
-    blurb: "Finished eras freeze for fidelity.",
+    blurb: "Finished chapters get saved honestly — no rewriting the past to look prettier.",
   },
   {
     id: "fence",
-    label: "Private fence",
+    label: "Private floor",
     short: "FENCE",
     kind: "layer",
     color: "#f472b6",
-    blurb: "Experiments stay private until deliberately promoted.",
+    blurb: "Experiments stay behind this fence until someone chooses to make them public.",
   },
   {
     id: "evidence",
@@ -97,15 +71,15 @@ export const HIVE_NODES: HiveNode[] = [
     short: "EVID",
     kind: "integrity",
     color: "#34d399",
-    blurb: "Primary record. Prefer this over commentary.",
+    blurb: "What the original record actually shows. Prefer this over “I heard that…”.",
   },
   {
     id: "inference",
-    label: "Inference",
-    short: "INF",
+    label: "Careful guess",
+    short: "INFER",
     kind: "integrity",
     color: "#60a5fa",
-    blurb: "Derived claim — must stay labeled as inference.",
+    blurb: "A conclusion you carefully drew from evidence — keep the label on so no one confuses it with proof.",
   },
   {
     id: "assumption",
@@ -113,7 +87,7 @@ export const HIVE_NODES: HiveNode[] = [
     short: "ASSUM",
     kind: "integrity",
     color: "#fbbf24",
-    blurb: "Working premise. Do not present as proven.",
+    blurb: "Something you are taking as true for now. Useful — not proven.",
   },
   {
     id: "supported",
@@ -122,7 +96,7 @@ export const HIVE_NODES: HiveNode[] = [
     kind: "claim",
     status: "Supported",
     color: "#6ee7b7",
-    blurb: "Backed by primary record enough to use carefully.",
+    blurb: "Strong enough to use carefully, with the source still in view.",
   },
   {
     id: "unproven",
@@ -131,7 +105,7 @@ export const HIVE_NODES: HiveNode[] = [
     kind: "claim",
     status: "Unproven",
     color: "#fcd34d",
-    blurb: "Open. Do not overclaim.",
+    blurb: "Still open. Do not dress this up as certainty.",
   },
   {
     id: "disputed",
@@ -140,32 +114,32 @@ export const HIVE_NODES: HiveNode[] = [
     kind: "claim",
     status: "Disputed",
     color: "#fb7185",
-    blurb: "Conflict remains visible. No silent resolution.",
+    blurb: "People or sources disagree. Keep the argument visible — do not hide it.",
   },
   {
     id: "human",
-    label: "Human call",
+    label: "Human decision",
     short: "HUMAN",
     kind: "claim",
     status: "Human call",
     color: "#e9d5ff",
-    blurb: "A human decides what is true enough to ship.",
+    blurb: "A real person decides what is true enough to share — and owns the leftover risk.",
   },
   {
     id: "sense",
-    label: "Sense",
-    short: "SENSE",
+    label: "Look first",
+    short: "LOOK",
     kind: "process",
     color: "#67e8f9",
-    blurb: "Outer sense — observe the field without forcing a story.",
+    blurb: "Notice what is going on before you invent a story or start building.",
   },
   {
     id: "reason",
-    label: "Reason",
-    short: "REASON",
+    label: "Think carefully",
+    short: "THINK",
     kind: "process",
     color: "#818cf8",
-    blurb: "Mid reason — structure scrutiny. Models assist.",
+    blurb: "Organize your scrutiny. Tools can help; they do not get to declare truth alone.",
   },
   {
     id: "build",
@@ -173,142 +147,367 @@ export const HIVE_NODES: HiveNode[] = [
     short: "BUILD",
     kind: "process",
     color: "#f0abfc",
-    blurb: "Core build — ship only what integrity allows.",
+    blurb: "Make the public thing only after looking and thinking carefully.",
   },
   {
     id: "architect",
-    label: "Architect",
-    short: "ARCHT",
+    label: "Planner",
+    short: "PLAN",
     kind: "agent",
     color: "#93c5fd",
-    blurb: "Shapes structure and interfaces.",
+    blurb: "Shapes the structure and boundaries — how the rooms connect.",
   },
   {
     id: "builder",
-    label: "Builder",
-    short: "BLD",
+    label: "Maker",
+    short: "MAKE",
     kind: "agent",
     color: "#86efac",
-    blurb: "Implements the public-safe surface.",
+    blurb: "Builds the surface people actually use.",
   },
   {
     id: "critic",
-    label: "Critic",
-    short: "CRIT",
+    label: "Checker",
+    short: "CHECK",
     kind: "agent",
     color: "#fda4af",
-    blurb: "Stress-tests claims and overreach.",
+    blurb: "Stress-tests overclaims, private leaks, and “looks good enough” theater.",
   },
   {
     id: "integrator",
-    label: "Integrator",
-    short: "INT",
+    label: "Merger",
+    short: "MERGE",
     kind: "agent",
     color: "#c4b5fd",
-    blurb: "Merges lanes into one honest delivery.",
+    blurb: "Brings parallel work into one honest delivery.",
   },
   {
     id: "civic",
-    label: "Civic suite",
+    label: "Civic tools",
     short: "CIVIC",
     kind: "product",
     color: "#2dd4bf",
-    blurb: "Public map-style claims tools — plain language.",
+    blurb: "Public map-style tools for claims — everyday language.",
   },
   {
     id: "tutor",
-    label: "Educational Tutor",
-    short: "TUTOR",
+    label: "Learning path",
+    short: "LEARN",
     kind: "product",
     color: "#fbbf24",
-    blurb: "Craft learning that transfers — not engagement theater.",
+    blurb: "Craft learning that sticks — not “time spent staring at a screen.”",
   },
   {
     id: "replication",
-    label: "Replication",
-    short: "REP",
+    label: "Someone else can continue",
+    short: "CONT",
     kind: "tool",
     color: "#a5b4fc",
-    blurb: "Another team could continue from the record.",
+    blurb: "Another careful person could pick this up from the written record alone.",
   },
   {
     id: "fidelity",
-    label: "Fidelity",
-    short: "FID",
+    label: "Honest history",
+    short: "HONEST",
     kind: "tool",
     color: "#67e8f9",
-    blurb: "History stays honest; no polish into fiction.",
+    blurb: "History stays true; we do not polish it into fiction.",
   },
   {
     id: "engagement-out",
-    label: "Not engagement",
-    short: "!ENG",
+    label: "Not popularity",
+    short: "!POP",
     kind: "tool",
     color: "#94a3b8",
-    blurb: "Attention metrics are not ship criteria.",
+    blurb: "Likes and watch-time are not how we decide if work is ready.",
   },
 ];
+
+export type ShapeCategoryId =
+  | "orient"
+  | "integrity"
+  | "mission"
+  | "coordinate"
+  | "surface";
+
+export type HiveModeId =
+  | "honeycomb"
+  | "layer-stack"
+  | "welcome-path"
+  | "map-atlas"
+  | "integrity-triangle"
+  | "claim-diamond"
+  | "provenance-chain"
+  | "honest-gap"
+  | "mission-spine"
+  | "sense-reason-build"
+  | "ship-gate"
+  | "freeze-era"
+  | "four-agent"
+  | "sync-gate"
+  | "edge-permission"
+  | "fresh-verifier"
+  | "field-helix"
+  | "star-burst"
+  | "civic-lens"
+  | "tutor-path";
+
+export type HiveMode = {
+  id: HiveModeId;
+  category: ShapeCategoryId;
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
+export type ShapeCategory = {
+  id: ShapeCategoryId;
+  title: string;
+  plain: string;
+  blurb: string;
+};
+
+export const SHAPE_CATEGORIES: ShapeCategory[] = [
+  {
+    id: "orient",
+    title: "Orient",
+    plain: "Look around first",
+    blurb: "Walk the building. Learn the floors before you force a big mission.",
+  },
+  {
+    id: "integrity",
+    title: "Integrity",
+    plain: "Say how you know",
+    blurb: "Evidence, careful guesses, open holes, and honest labels — nothing quietly becomes “proven.”",
+  },
+  {
+    id: "mission",
+    title: "Mission",
+    plain: "Finish one honest job",
+    blurb: "From first question to careful share: order of work, a ship checklist, and saving the chapter.",
+  },
+  {
+    id: "coordinate",
+    title: "Coordinate",
+    plain: "Share carefully",
+    blurb: "When people work side by side, share short checked notes — full dumps can spread mistakes.",
+  },
+  {
+    id: "surface",
+    title: "Surface",
+    plain: "What the public sees",
+    blurb: "Civic maps, learning paths, field loops, and the few rules that never move.",
+  },
+];
+
+export type ReasoningDepth = "moderate" | "deep";
+
+export type ReasonChapter =
+  | "Frame"
+  | "Sense"
+  | "Reason"
+  | "Coordinate"
+  | "Build"
+  | "Ship"
+  | "Freeze";
+
+/** High-school-friendly chapter labels (engineers still get the structure). */
+export const CHAPTER_PLAIN: Record<ReasonChapter, string> = {
+  Frame: "Start",
+  Sense: "Look",
+  Reason: "Think",
+  Coordinate: "Team up",
+  Build: "Build",
+  Ship: "Share",
+  Freeze: "Save",
+};
+
+export type ReasonStep = {
+  id: string;
+  t: number;
+  title: string;
+  detail: string;
+  focusNodeIds: string[];
+  edgePairs?: [string, string][];
+  statusTone?: ClaimStatus;
+  chapter?: ReasonChapter;
+  depthTier?: "core" | "deep";
+  playWeight?: "spine" | "side";
+};
 
 export const HIVE_MODES: HiveMode[] = [
   {
     id: "honeycomb",
+    category: "orient",
     title: "Honeycomb",
-    subtitle: "Default field — equal combs, open exploration",
+    subtitle: "Look around first — no forced mission yet",
     description:
-      "Browse the integrity field without forcing a delivery path. Good for orientation.",
+      "A gentle map of the whole building. Best when you are new and want to learn the floors before shipping anything.",
   },
   {
-    id: "mission-spine",
-    title: "Mission Spine",
-    subtitle: "Frame → Evidence → Route → Practice → Deliver",
+    id: "layer-stack",
+    category: "orient",
+    title: "Floor stack",
+    subtitle: "Rules · knowledge · private · archive as floors",
     description:
-      "Vertical spine for a single honest mission. Satellites hold supporting claims.",
+      "See the Hive as a building with floors that must not blend. Public work stays on public floors.",
+  },
+  {
+    id: "welcome-path",
+    category: "orient",
+    title: "Welcome path",
+    subtitle: "A short first tour",
+    description:
+      "For anyone new: what this place is, the four honesty words, one demo, then a person decides to continue.",
+  },
+  {
+    id: "map-atlas",
+    category: "orient",
+    title: "Map atlas",
+    subtitle: "Flat cards when 3D feels like a lot",
+    description:
+      "A simple map of north-star rules, thinking tools, and public products — no pressure to “perform” in 3D.",
   },
   {
     id: "integrity-triangle",
-    title: "Integrity Triangle",
-    subtitle: "Evidence · Inference · Assumption",
+    category: "integrity",
+    title: "Integrity triangle",
+    subtitle: "Evidence · careful guess · assumption",
     description:
-      "Force every claim into the triangle. Labels stay visible — no silent upgrade.",
+      "Three corners for how we know something. Labels stay on — nothing quietly becomes “proven.”",
   },
   {
     id: "claim-diamond",
-    title: "Claim Diamond",
-    subtitle: "Supported · Unproven · Disputed · Human call",
+    category: "integrity",
+    title: "Claim diamond",
+    subtitle: "Supported · Unproven · Disputed · Human decision",
     description:
-      "In-state claims with human final call at the tip. Demo of status discipline.",
+      "Four honest states for any claim. A person sits at the tip and decides what is true enough to share.",
+  },
+  {
+    id: "provenance-chain",
+    category: "integrity",
+    title: "Source trail",
+    subtitle: "Where did this come from?",
+    description:
+      "Follow a claim back to its source. Second-hand notes never outrank the original record.",
+  },
+  {
+    id: "honest-gap",
+    category: "integrity",
+    title: "Honest gap",
+    subtitle: "Incomplete is allowed",
+    description:
+      "Leave open holes as Unproven. Filling them with confident fiction is the failure mode.",
+  },
+  {
+    id: "mission-spine",
+    category: "mission",
+    title: "Mission path",
+    subtitle: "One job: idea → evidence → careful share",
+    description:
+      "A straight path for one public mission. Play walks real recorded decisions, including a conflict and a human sign-off.",
   },
   {
     id: "sense-reason-build",
-    title: "Sense → Reason → Build",
-    subtitle: "Outer sense · mid reason · core build",
+    category: "mission",
+    title: "Look → Think → Build",
+    subtitle: "Notice · scrutinize · then make",
     description:
-      "Three nested zones of work. Tools assist; they do not crown truth.",
+      "Three zones of work in order. Tools may help in the middle; they never get to declare truth alone.",
+  },
+  {
+    id: "ship-gate",
+    category: "mission",
+    title: "Ship gate",
+    subtitle: "Checklist before you go public",
+    description:
+      "Last checks: private stuff removed, claims labeled, leftover risk accepted by a person.",
+  },
+  {
+    id: "freeze-era",
+    category: "mission",
+    title: "Save the chapter",
+    subtitle: "When a chapter ends, lock the record",
+    description:
+      "Mark finished work, save the archive, and refuse to rewrite history so it looks smoother.",
   },
   {
     id: "four-agent",
-    title: "4-Agent Lanes",
-    subtitle: "Architect · Builder · Critic · Integrator",
+    category: "coordinate",
+    title: "Four roles",
+    subtitle: "Planner · Maker · Checker · Merger",
     description:
-      "Parallel lanes, single integrator. Orchestration without silent parallel production.",
+      "Side-by-side roles with one honest merge. Checkers can dispute; a person still owns the final call.",
+  },
+  {
+    id: "sync-gate",
+    category: "coordinate",
+    title: "Share gate",
+    subtitle: "What may cross between roles",
+    description:
+      "Two people can both be “right” locally and still disagree. A short checked note beats dumping everything.",
+  },
+  {
+    id: "edge-permission",
+    category: "coordinate",
+    title: "Real links only",
+    subtitle: "Only true dependencies get wires",
+    description:
+      "Cut fake “and then” links. Independent work can fan out; the longest real chain stays honest.",
+  },
+  {
+    id: "fresh-verifier",
+    category: "coordinate",
+    title: "Fresh eyes",
+    subtitle: "Maker never grades their own test",
+    description:
+      "A separate checker, with fresh context, checks a real signal. Self-check alone is not enough.",
   },
   {
     id: "field-helix",
-    title: "Field Helix",
-    subtitle: "Observe → Claim → Communicate → Progress spiral",
+    category: "surface",
+    title: "Learning spiral",
+    subtitle: "Observe → claim → talk → improve",
     description:
-      "Field learning loop: honest observation, careful claims, clear talk, then progress.",
+      "A loop for field work. Each turn should get more honest — not more hyped.",
   },
   {
     id: "star-burst",
-    title: "Star Burst",
-    subtitle: "Workspace combs as star points",
+    category: "surface",
+    title: "Star from the core",
+    subtitle: "One honest center · public rays",
     description:
-      "Product surfaces radiate from a shared integrity core — public-safe only.",
+      "Public products radiate from a shared center. Private experiments are not a product ray.",
+  },
+  {
+    id: "civic-lens",
+    category: "surface",
+    title: "Civic map",
+    subtitle: "Public claims in plain words",
+    description:
+      "Claims on a public map stay everyday language, labeled, and free of private operator clutter.",
+  },
+  {
+    id: "tutor-path",
+    category: "surface",
+    title: "Learning path",
+    subtitle: "Goal → show your work → check transfer",
+    description:
+      "Lesson goal, visible thinking, then “can you use it?” Success is understanding — not minutes watched.",
   },
 ];
 
-/** Public map cards (2D map view) — principle/product labels only */
+export function modesInCategory(cat: ShapeCategoryId): HiveMode[] {
+  return HIVE_MODES.filter((m) => m.category === cat);
+}
+
+export function modeById(id: HiveModeId): HiveMode {
+  const m = HIVE_MODES.find((x) => x.id === id);
+  if (!m) throw new Error(`Unknown mode: ${id}`);
+  return m;
+}
+
 export const MAP_CARDS = [
   { id: "lrn", label: "Live session", group: "path", color: "#67e8f9" },
   { id: "pth", label: "Your path", group: "path", color: "#a78bfa" },
@@ -318,16 +517,16 @@ export const MAP_CARDS = [
   { id: "asm", label: "Assumption check", group: "tools", color: "#fcd34d" },
   { id: "ic", label: "Integrity check", group: "tools", color: "#c4b5fd" },
   { id: "sww", label: "Show your work", group: "tools", color: "#93c5fd" },
-  { id: "civic", label: "Civic suite", group: "products", color: "#2dd4bf" },
-  { id: "tutor", label: "Educational Tutor", group: "products", color: "#fbbf24" },
-  { id: "rep", label: "Replication", group: "north", color: "#a5b4fc" },
-  { id: "fid", label: "Fidelity", group: "north", color: "#67e8f9" },
-  { id: "neng", label: "Not engagement", group: "north", color: "#94a3b8" },
-  { id: "aos", label: "AOS control", group: "layers", color: "#a78bfa" },
-  { id: "know", label: "Knowledge hive", group: "layers", color: "#22d3ee" },
-  { id: "fence", label: "Private fence", group: "layers", color: "#f472b6" },
-  { id: "arch", label: "Archive freeze", group: "layers", color: "#94a3b8" },
-  { id: "hum", label: "Human final call", group: "integrity", color: "#e9d5ff" },
+  { id: "civic", label: "Civic tools", group: "products", color: "#2dd4bf" },
+  { id: "tutor", label: "Learning path", group: "products", color: "#fbbf24" },
+  { id: "rep", label: "Someone can continue", group: "north", color: "#a5b4fc" },
+  { id: "fid", label: "Honest history", group: "north", color: "#67e8f9" },
+  { id: "neng", label: "Not popularity", group: "north", color: "#94a3b8" },
+  { id: "aos", label: "Workshop rules", group: "layers", color: "#a78bfa" },
+  { id: "know", label: "Knowledge floor", group: "layers", color: "#22d3ee" },
+  { id: "fence", label: "Private floor", group: "layers", color: "#f472b6" },
+  { id: "arch", label: "Archive floor", group: "layers", color: "#94a3b8" },
+  { id: "hum", label: "Human decision", group: "integrity", color: "#e9d5ff" },
   { id: "sup", label: "Supported", group: "integrity", color: "#6ee7b7" },
   { id: "unp", label: "Unproven", group: "integrity", color: "#fcd34d" },
   { id: "dis", label: "Disputed", group: "integrity", color: "#fb7185" },
@@ -336,348 +535,7 @@ export const MAP_CARDS = [
   { id: "ind", label: "Industries (public)", group: "products", color: "#fda4af" },
 ] as const;
 
-export const REASONING_SCRIPTS: Record<HiveModeId, ReasonStep[]> = {
-  honeycomb: [
-    {
-      id: "h1",
-      t: 0.4,
-      title: "Open the field",
-      detail: "No forced route yet. Scan combs for structure without inventing a narrative.",
-      focusNodeIds: ["hive", "know", "aos"],
-    },
-    {
-      id: "h2",
-      t: 2.2,
-      title: "Separate layers",
-      detail: "Control plane, knowledge, private fence, and archive stay distinct rooms.",
-      focusNodeIds: ["aos", "know", "fence", "archive"],
-      edgePairs: [
-        ["hive", "aos"],
-        ["hive", "know"],
-        ["hive", "fence"],
-        ["hive", "archive"],
-      ],
-    },
-    {
-      id: "h3",
-      t: 4.2,
-      title: "Mark integrity tools",
-      detail: "Evidence / Inference / Assumption must remain labeled before any claim ships.",
-      focusNodeIds: ["evidence", "inference", "assumption"],
-      edgePairs: [
-        ["evidence", "inference"],
-        ["inference", "assumption"],
-        ["assumption", "evidence"],
-      ],
-    },
-    {
-      id: "h4",
-      t: 6.4,
-      title: "Public products only",
-      detail: "Civic suite and Educational Tutor are the public faces — no private theater.",
-      focusNodeIds: ["civic", "tutor", "hive"],
-      edgePairs: [
-        ["hive", "civic"],
-        ["hive", "tutor"],
-      ],
-    },
-  ],
-  "mission-spine": [
-    {
-      id: "m1",
-      t: 0.3,
-      title: "Frame the mission",
-      detail: "State what we are building in public-safe language.",
-      focusNodeIds: ["aos", "hive"],
-    },
-    {
-      id: "m2",
-      t: 1.8,
-      title: "Gather evidence",
-      detail: "Primary records first. Commentary is secondary.",
-      focusNodeIds: ["evidence", "supported"],
-      edgePairs: [["evidence", "supported"]],
-      statusTone: "Supported",
-    },
-    {
-      id: "m3",
-      t: 3.4,
-      title: "Route the work",
-      detail: "Choose Sense → Reason → Build. Do not skip scrutiny.",
-      focusNodeIds: ["sense", "reason", "build"],
-      edgePairs: [
-        ["sense", "reason"],
-        ["reason", "build"],
-      ],
-    },
-    {
-      id: "m4",
-      t: 5.2,
-      title: "Practice on the surface",
-      detail: "Tutor and civic tools stay plain. No operator chrome in the product UI.",
-      focusNodeIds: ["tutor", "civic"],
-    },
-    {
-      id: "m5",
-      t: 7.0,
-      title: "Deliver with human call",
-      detail: "Ship only after a human accepts residual risk. Replication beats hype.",
-      focusNodeIds: ["human", "replication", "fidelity"],
-      edgePairs: [
-        ["build", "human"],
-        ["human", "replication"],
-      ],
-      statusTone: "Human call",
-    },
-  ],
-  "integrity-triangle": [
-    {
-      id: "i1",
-      t: 0.3,
-      title: "Place Evidence",
-      detail: "Corner A: what the primary record actually shows.",
-      focusNodeIds: ["evidence"],
-      statusTone: "Supported",
-    },
-    {
-      id: "i2",
-      t: 2.0,
-      title: "Place Inference",
-      detail: "Corner B: what we derive. Keep the label — never upgrade to evidence quietly.",
-      focusNodeIds: ["inference"],
-      edgePairs: [["evidence", "inference"]],
-    },
-    {
-      id: "i3",
-      t: 3.6,
-      title: "Place Assumption",
-      detail: "Corner C: working premises. Visible, challengeable.",
-      focusNodeIds: ["assumption"],
-      edgePairs: [
-        ["inference", "assumption"],
-        ["assumption", "evidence"],
-      ],
-    },
-    {
-      id: "i4",
-      t: 5.4,
-      title: "Refuse silent upgrade",
-      detail: "If multi-model agreement appears, still require human call before ship.",
-      focusNodeIds: ["human", "hive"],
-      edgePairs: [["hive", "human"]],
-      statusTone: "Human call",
-    },
-  ],
-  "claim-diamond": [
-    {
-      id: "c1",
-      t: 0.3,
-      title: "Open claim set",
-      detail: "Four in-state claim postures — none is auto-truth.",
-      focusNodeIds: ["supported", "unproven", "disputed", "human"],
-    },
-    {
-      id: "c2",
-      t: 2.0,
-      title: "Supported lane",
-      detail: "Primary record backs use. Still cite evidence.",
-      focusNodeIds: ["supported", "evidence"],
-      edgePairs: [["evidence", "supported"]],
-      statusTone: "Supported",
-    },
-    {
-      id: "c3",
-      t: 3.6,
-      title: "Unproven stays open",
-      detail: "Do not paper over gaps with confident fiction.",
-      focusNodeIds: ["unproven", "assumption"],
-      statusTone: "Unproven",
-    },
-    {
-      id: "c4",
-      t: 5.2,
-      title: "Disputed remains visible",
-      detail: "Conflict is a feature of honesty, not a defect to hide.",
-      focusNodeIds: ["disputed", "critic"],
-      statusTone: "Disputed",
-    },
-    {
-      id: "c5",
-      t: 6.8,
-      title: "Human call at the tip",
-      detail: "Final ship decision is human — tip of the diamond.",
-      focusNodeIds: ["human", "hive"],
-      edgePairs: [
-        ["supported", "human"],
-        ["unproven", "human"],
-        ["disputed", "human"],
-      ],
-      statusTone: "Human call",
-    },
-  ],
-  "sense-reason-build": [
-    {
-      id: "s1",
-      t: 0.3,
-      title: "Outer sense",
-      detail: "Observe field signals without forcing a conclusion.",
-      focusNodeIds: ["sense", "know"],
-    },
-    {
-      id: "s2",
-      t: 2.0,
-      title: "Mid reason",
-      detail: "Structure scrutiny. Models propose; they do not decide.",
-      focusNodeIds: ["reason", "evidence", "inference"],
-      edgePairs: [
-        ["sense", "reason"],
-        ["reason", "evidence"],
-      ],
-    },
-    {
-      id: "s3",
-      t: 3.8,
-      title: "Core build",
-      detail: "Implement only what integrity and human call allow.",
-      focusNodeIds: ["build", "civic", "tutor"],
-      edgePairs: [
-        ["reason", "build"],
-        ["build", "civic"],
-        ["build", "tutor"],
-      ],
-    },
-    {
-      id: "s4",
-      t: 5.8,
-      title: "North-star check",
-      detail: "Replication and fidelity — not engagement metrics.",
-      focusNodeIds: ["replication", "fidelity", "engagement-out"],
-      statusTone: "Supported",
-    },
-  ],
-  "four-agent": [
-    {
-      id: "a1",
-      t: 0.3,
-      title: "Architect lane",
-      detail: "Define public interfaces and boundaries.",
-      focusNodeIds: ["architect", "aos"],
-    },
-    {
-      id: "a2",
-      t: 1.8,
-      title: "Builder lane",
-      detail: "Ship the public-safe surface.",
-      focusNodeIds: ["builder", "build"],
-      edgePairs: [["architect", "builder"]],
-    },
-    {
-      id: "a3",
-      t: 3.4,
-      title: "Critic lane",
-      detail: "Attack overclaims, private leakage, engagement theater.",
-      focusNodeIds: ["critic", "disputed"],
-      edgePairs: [["builder", "critic"]],
-      statusTone: "Disputed",
-    },
-    {
-      id: "a4",
-      t: 5.0,
-      title: "Integrator merge",
-      detail: "One delivery. No silent parallel production of every experiment.",
-      focusNodeIds: ["integrator", "human", "hive"],
-      edgePairs: [
-        ["critic", "integrator"],
-        ["architect", "integrator"],
-        ["builder", "integrator"],
-        ["integrator", "human"],
-      ],
-      statusTone: "Human call",
-    },
-  ],
-  "field-helix": [
-    {
-      id: "f1",
-      t: 0.3,
-      title: "Observe",
-      detail: "Honest field observation — Sense first.",
-      focusNodeIds: ["sense", "know"],
-    },
-    {
-      id: "f2",
-      t: 1.8,
-      title: "Claim carefully",
-      detail: "Status labels on every claim before communication.",
-      focusNodeIds: ["supported", "unproven", "disputed"],
-      edgePairs: [
-        ["sense", "supported"],
-        ["sense", "unproven"],
-      ],
-    },
-    {
-      id: "f3",
-      t: 3.6,
-      title: "Communicate",
-      detail: "Plain language for public tools. No private operator surface.",
-      focusNodeIds: ["civic", "tutor"],
-      edgePairs: [
-        ["supported", "civic"],
-        ["tutor", "civic"],
-      ],
-    },
-    {
-      id: "f4",
-      t: 5.4,
-      title: "Progress spiral",
-      detail: "Each loop tightens fidelity — archive freezes what finished.",
-      focusNodeIds: ["replication", "fidelity", "archive"],
-      edgePairs: [
-        ["civic", "archive"],
-        ["archive", "fidelity"],
-      ],
-    },
-  ],
-  "star-burst": [
-    {
-      id: "b1",
-      t: 0.3,
-      title: "Integrity core",
-      detail: "All public rays share one kernel — human final call remains.",
-      focusNodeIds: ["hive", "human"],
-    },
-    {
-      id: "b2",
-      t: 2.0,
-      title: "Radiate products",
-      detail: "Civic suite and Educational Tutor as first-class public rays.",
-      focusNodeIds: ["civic", "tutor", "hive"],
-      edgePairs: [
-        ["hive", "civic"],
-        ["hive", "tutor"],
-      ],
-    },
-    {
-      id: "b3",
-      t: 3.8,
-      title: "Hold the fence",
-      detail: "Private research is a ray that does not merge into public UI.",
-      focusNodeIds: ["fence", "archive"],
-      edgePairs: [["hive", "fence"]],
-    },
-    {
-      id: "b4",
-      t: 5.6,
-      title: "Star points as combs",
-      detail: "Workspace combs stay principle-level: replication, fidelity, not engagement.",
-      focusNodeIds: ["replication", "fidelity", "engagement-out"],
-      edgePairs: [
-        ["hive", "replication"],
-        ["hive", "fidelity"],
-        ["hive", "engagement-out"],
-      ],
-    },
-  ],
-};
+export const REASONING_SCRIPTS: Partial<Record<HiveModeId, ReasonStep[]>> = {};
 
 export function nodeById(id: string): HiveNode {
   const n = HIVE_NODES.find((x) => x.id === id);

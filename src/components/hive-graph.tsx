@@ -197,7 +197,7 @@ export function HiveGraph({ className = "" }: { className?: string }) {
           <text x="58" y="118">human_call()</text>
           <rect x="660" y="80" width="96" height="58" rx="6" fill="#0f172a" stroke="#334155" />
           <text x="670" y="100">replicate()</text>
-          <text x="670" y="114">fidelity.lock</text>
+          <text x="670" y="114">honest.history</text>
           <text x="670" y="128">!engagement</text>
           <rect x="640" y="360" width="100" height="58" rx="6" fill="#0f172a" stroke="#334155" />
           <text x="650" y="380">public.ship</text>

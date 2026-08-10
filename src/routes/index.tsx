@@ -16,11 +16,14 @@ import {
   Target,
   XCircle,
   Box,
+  GitBranch,
+  Play,
 } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SeedDownloadPanel } from "@/components/seed-download";
 import { HiveGraph } from "@/components/hive-graph";
 import { SEED_PACK_VERSION } from "@/data/clean-seed";
+import { HIVE_MODES, SHAPE_CATEGORIES, modesInCategory } from "@/data/hive-universe";
 
 export const Route = createFileRoute("/")({ component: HomePage });
 
@@ -28,19 +31,19 @@ const layers = [
   {
     icon: Compass,
     title: "Control plane",
-    body: "Purpose and product discipline in one place — AOS holds the workshop law.",
+    body: "One place for purpose and product discipline — the workshop law.",
     tone: "violet",
   },
   {
     icon: Layers,
     title: "Knowledge (Hive)",
-    body: "Sources become linked knowledge that compounds. Wiki over chat amnesia.",
+    body: "Sources become linked knowledge that compounds. Notes beat chat amnesia.",
     tone: "cyan",
   },
   {
     icon: Brain,
     title: "Reasoning",
-    body: "Structured scrutiny. Models assist; they do not crown truth.",
+    body: "Structured scrutiny with labels. Models assist; they do not crown truth.",
     tone: "blue",
   },
   {
@@ -52,13 +55,13 @@ const layers = [
   {
     icon: EyeOff,
     title: "Private research",
-    body: "Experiments stay fenced until deliberately promoted. Not silent production.",
+    body: "Experiments stay fenced until someone deliberately promotes them.",
     tone: "rose",
   },
   {
     icon: Archive,
     title: "Archive",
-    body: "Finished eras freeze for fidelity. History is not polished into fiction.",
+    body: "Finished eras freeze. History is not polished into fiction.",
     tone: "amber",
   },
 ] as const;
@@ -82,33 +85,33 @@ const toneIcon: Record<(typeof layers)[number]["tone"], string> = {
 };
 
 const principles = [
-  "Replication over engagement",
-  "Fidelity over narrative polish",
-  "One integrity framework for every builder",
-  "Separate control plane from products people use",
-  "Keep public products free of private theater",
-  "Ship nothing from tokens alone",
+  "Someone else can continue — popularity is not the scoreboard",
+  "Honest history over a prettier story",
+  "One integrity language for every builder",
+  "Separate the control plane from the products people use",
+  "Keep public tools free of private clutter",
+  "Ship nothing just because you spent a lot of time or tokens",
 ] as const;
 
 const notList = [
   "Not an engagement farm or content theater",
-  "Not an auto-truth engine",
-  "Not silent parallel production of every experiment",
-  "Not operator-runbook publishing",
-  "Not finished by token spend or traction",
+  "Not a machine that crowns truth by itself",
+  "Not “run everything in secret and call it shipped”",
+  "Not a place to publish private how-to manuals for operators",
+  "Not “done” because it trended or burned time",
 ] as const;
 
 const success = [
-  "Could another team continue this from the record?",
-  "Does the record stay honest?",
+  "Could another careful person continue this from the written record?",
+  "Does the written record stay honest when things get messy?",
   "Are public tools clear and free of private theater?",
-  "Were engagement metrics never used as the ship criterion?",
+  "Were likes or watch-time never used as the reason to ship?",
 ] as const;
 
 const integrity = [
-  { label: "Supported", hint: "Backed by primary record", tone: "mint" as const },
-  { label: "Unproven", hint: "Open; do not overclaim", tone: "amber" as const },
-  { label: "Disputed", hint: "Conflict remains visible", tone: "rose" as const },
+  { label: "Supported", hint: "Backed carefully by primary records", tone: "mint" as const },
+  { label: "Unproven", hint: "Still open — do not overclaim", tone: "amber" as const },
+  { label: "Disputed", hint: "Conflict stays visible", tone: "rose" as const },
 ];
 
 function HomePage() {
@@ -122,32 +125,32 @@ function HomePage() {
             <div className="relative z-10 max-w-xl space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-[11px] font-medium tracking-wide text-success uppercase">
                 <span className="size-1.5 rounded-full bg-success shadow-[0_0_8px_var(--color-success)]" />
-                AdventureNLearn · AOS control plane
+                AdventureNLearn · public system brief
               </div>
               <h1 className="text-balance text-4xl font-semibold tracking-tight text-fg text-glow sm:text-5xl lg:text-[3.35rem] lg:leading-[1.08]">
                 Hive Brain
                 <span className="mt-2 block text-[0.52em] font-medium tracking-normal text-fg-muted sm:text-[0.48em]">
-                  Public system brief · interactive reasoning demo
+                  20 thinking shapes · 5 rooms · readable by anyone
                 </span>
               </h1>
               <p className="max-w-lg text-base leading-relaxed text-fg-muted sm:text-lg">
-                A workshop that builds public tools for civic learning and craft education,
-                while protecting private research. Watch active reasoning play through
-                formation modes — or download the clean seed for a new Grok Build chat.
+                Hive Brain is the living picture of the AOS control plane. Open the live Hive to
+                explore five rooms of shapes — each replaying honest decisions a careful high-school
+                senior can follow as easily as an engineer.
               </p>
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   to="/hive"
                   className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-accent px-5 text-sm font-medium text-accent-fg shadow-[0_0_32px_-8px_var(--color-glow-violet)] transition-opacity hover:opacity-90 active:scale-[0.98]"
                 >
-                  <Box className="size-4" aria-hidden />
-                  Open interactive Hive
+                  <Play className="size-4" aria-hidden />
+                  Open the live Hive
                 </Link>
                 <a
-                  href="#seed"
+                  href="#shapes"
                   className="focus-ring inline-flex h-11 items-center justify-center rounded-md border border-border-strong/80 bg-bg-elevated/70 px-5 text-sm font-medium text-fg backdrop-blur-sm transition-colors hover:border-accent/40 hover:bg-bg-subtle active:scale-[0.98]"
                 >
-                  Download clean seed
+                  Meet the five rooms
                 </a>
               </div>
               <dl className="flex flex-wrap gap-x-6 gap-y-2 pt-1 text-xs text-fg-subtle">
@@ -157,7 +160,7 @@ function HomePage() {
                 </div>
                 <div className="flex gap-2">
                   <dt className="font-medium text-fg-muted">Demo</dt>
-                  <dd>8 formation modes · live reasoning</dd>
+                  <dd>20 shapes · 5 categories · decision graphs</dd>
                 </div>
                 <div className="flex gap-2">
                   <dt className="font-medium text-fg-muted">Seed</dt>
@@ -189,26 +192,92 @@ function HomePage() {
 
         <div className="mx-auto max-w-6xl space-y-16 px-4 py-14 sm:px-6 sm:py-20">
           <section id="north-star" className="scroll-mt-20 space-y-8" aria-labelledby="ns-h">
-            <SectionHead icon={Target} kicker="Non-negotiable" title="North star" id="ns-h" />
+            <SectionHead
+              icon={Target}
+              kicker="Non-negotiable"
+              title="North star (in everyday words)"
+              id="ns-h"
+            />
             <div className="grid gap-4 md:grid-cols-3">
               <PrincipleCard
                 title="Replication"
-                body="Another competent builder should be able to continue from the record."
+                body="Someone else who is competent should be able to pick up the work from the written record — not from your chat memory."
               />
               <PrincipleCard
                 title="Fidelity"
-                body="Finished work freezes; claims stay honest; history is not polished into fiction."
+                body="When something finishes, freeze it. Do not rewrite history to look smoother than it was."
               />
               <PrincipleCard
                 title="Not engagement"
-                body="Not optimized for likes, dwell time, virality, or attention metrics."
+                body="Likes, dwell time, and virality are not how we decide if work is ready to ship."
                 muted
               />
             </div>
           </section>
 
+          <section id="shapes" className="scroll-mt-20 space-y-8" aria-labelledby="shapes-h">
+            <SectionHead
+              icon={Box}
+              kicker="Interactive demo"
+              title="Five rooms · twenty shapes"
+              id="shapes-h"
+            />
+            <p className="max-w-2xl text-sm leading-relaxed text-fg-muted sm:text-base">
+              The live Hive never dumps all twenty shapes at once. You pick a{" "}
+              <strong className="font-medium text-fg">room</strong>, then one of about four shapes.
+              Every shape replays a short decision story. Start with{" "}
+              <strong className="font-medium text-fg">Orient → Honeycomb</strong> if you are new;
+              try <strong className="font-medium text-fg">Coordinate → Share gate</strong> to see why
+              dumping everything between teammates can make things worse.
+            </p>
+            <div className="space-y-6">
+              {SHAPE_CATEGORIES.map((cat) => (
+                <div key={cat.id} className="space-y-3">
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <h3 className="text-base font-semibold text-fg">{cat.title}</h3>
+                    <p className="text-sm text-accent">{cat.plain}</p>
+                    <p className="w-full text-xs text-fg-muted sm:w-auto sm:flex-1">
+                      {cat.blurb}
+                    </p>
+                  </div>
+                  <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                    {modesInCategory(cat.id).map((m) => (
+                      <article
+                        key={m.id}
+                        className="glass-panel flex flex-col rounded-lg p-3.5 transition-colors hover:border-accent/35"
+                      >
+                        <h4 className="text-sm font-semibold text-fg">{m.title}</h4>
+                        <p className="mt-1 text-[11px] font-medium text-accent">{m.subtitle}</p>
+                        <p className="mt-2 flex-1 text-xs leading-relaxed text-fg-muted">
+                          {m.description}
+                        </p>
+                      </article>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                to="/hive"
+                className="focus-ring inline-flex h-11 items-center justify-center gap-2 rounded-md bg-accent px-5 text-sm font-medium text-accent-fg"
+              >
+                <Play className="size-4" aria-hidden />
+                Play any shape in the Hive
+              </Link>
+              <p className="self-center text-xs text-fg-subtle">
+                {HIVE_MODES.length} decision-backed shapes total
+              </p>
+            </div>
+          </section>
+
           <section id="layers" className="scroll-mt-20 space-y-8" aria-labelledby="layers-h">
-            <SectionHead icon={Layers} kicker="Rooms in one building" title="System layers" id="layers-h" />
+            <SectionHead
+              icon={Layers}
+              kicker="Rooms in one building"
+              title="System layers"
+              id="layers-h"
+            />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {layers.map((layer, i) => (
                 <article
@@ -231,7 +300,12 @@ function HomePage() {
           </section>
 
           <section id="products" className="scroll-mt-20 space-y-8" aria-labelledby="products-h">
-            <SectionHead icon={BookOpen} kicker="What ships publicly" title="Public products" id="products-h" />
+            <SectionHead
+              icon={BookOpen}
+              kicker="What ships publicly"
+              title="Public products"
+              id="products-h"
+            />
             <div className="grid gap-4 md:grid-cols-2">
               <article className="glass-panel rounded-xl border-glow-mint/25 p-6 shadow-[0_0_40px_-18px_var(--color-glow-mint)] sm:p-8">
                 <div className="mb-4 flex size-10 items-center justify-center rounded-md border border-glow-mint/30 bg-bg-subtle">
@@ -239,8 +313,8 @@ function HomePage() {
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight text-fg">Civic suite</h3>
                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                  Map-style tools for claims and jobsite-style surfaces. Public-facing UI stays
-                  plain and educational.
+                  Map-style tools for claims. The public UI stays plain and educational — not full
+                  of private operator chrome.
                 </p>
               </article>
               <article className="glass-panel rounded-xl border-glow-amber/25 p-6 shadow-[0_0_40px_-18px_var(--color-glow-amber)] sm:p-8">
@@ -249,15 +323,19 @@ function HomePage() {
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight text-fg">Educational Tutor</h3>
                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                  Craft learning in plain language. Success is understanding that transfers — not
-                  time-on-page theater.
+                  Craft learning in everyday language. Success is understanding that transfers — not
+                  time spent staring at a screen.
                 </p>
               </article>
             </div>
           </section>
 
           <section id="integrity" className="scroll-mt-20 space-y-8" aria-labelledby="integrity-h">
-            <SectionHead icon={Scale} kicker="Always" title="Integrity kernel" id="integrity-h" />
+            <SectionHead icon={Scale} kicker="Always" title="Honesty kernel" id="integrity-h" />
+            <p className="max-w-2xl text-sm leading-relaxed text-fg-muted">
+              Think of these as traffic lights for claims. They keep everyone honest when it is
+              tempting to sound more certain than the evidence allows.
+            </p>
             <div className="grid gap-3 sm:grid-cols-3">
               {integrity.map((item) => (
                 <div
@@ -271,12 +349,12 @@ function HomePage() {
             </div>
             <ul className="grid gap-2 sm:grid-cols-2">
               {[
-                "Evidence / Inference / Assumption labeled",
-                "Primary records beat commentary",
-                "Multi-model agreement ≠ automatic truth",
-                "Human final call is non-negotiable",
-                "Prefer honest incomplete state over confident fiction",
-                "Attention is not a truth signal",
+                "Label Evidence, Inference, and Assumption",
+                "Original records beat second-hand commentary",
+                "Many tools agreeing is not automatic truth",
+                "A human decision is required — and written down",
+                "Prefer honest incomplete work over confident make-believe",
+                "Attention is not a truth signal (popularity ≠ proof)",
               ].map((line) => (
                 <li
                   key={line}
@@ -287,6 +365,33 @@ function HomePage() {
                 </li>
               ))}
             </ul>
+
+            <article className="glass-panel rounded-xl border-glow-cyan/25 p-5 shadow-[0_0_36px_-16px_var(--color-glow-cyan)] sm:p-6">
+              <div className="flex items-start gap-3">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-glow-cyan/30 bg-bg-subtle">
+                  <GitBranch className="size-4 text-glow-cyan" aria-hidden />
+                </span>
+                <div className="min-w-0 space-y-2">
+                  <p className="text-[10px] font-medium tracking-[0.14em] text-glow-cyan uppercase">
+                    Written decisions · plain pattern
+                  </p>
+                  <h3 className="text-base font-semibold tracking-tight text-fg">
+                    Every shape walks a real written decision story
+                  </h3>
+                  <p className="text-sm leading-relaxed text-fg-muted">
+                    Record what happened, keep disagreements visible, require a human sign-off. The
+                    Coordinate room also teaches careful sharing (a short checked note beats dumping
+                    everything) — without claiming a giant multi-agent product.
+                  </p>
+                  <Link
+                    to="/hive"
+                    className="focus-ring inline-flex h-10 items-center rounded-md border border-glow-cyan/40 bg-glow-cyan/10 px-3 text-xs font-medium text-fg hover:bg-glow-cyan/15"
+                  >
+                    Replay any room
+                  </Link>
+                </div>
+              </div>
+            </article>
           </section>
 
           <div className="grid gap-8 lg:grid-cols-2">
@@ -323,7 +428,12 @@ function HomePage() {
           </div>
 
           <section className="space-y-6" aria-labelledby="success-h">
-            <SectionHead icon={CheckCircle2} kicker="Ship criteria" title="How to judge success" id="success-h" />
+            <SectionHead
+              icon={CheckCircle2}
+              kicker="Ship criteria"
+              title="How to judge success"
+              id="success-h"
+            />
             <div className="grid gap-3 sm:grid-cols-2">
               {success.map((q) => (
                 <blockquote
@@ -351,9 +461,9 @@ function HomePage() {
             />
             <ul className="mt-6 space-y-3">
               {[
-                "New conversation only (do not continue old thread)",
+                "Open a brand-new conversation (do not continue an old private thread)",
                 "Paste 01-NEW-CHAT-SEED.md as message 1",
-                "Confirm agent restates: replication + fidelity, not engagement",
+                "Confirm the agent restates: replication + fidelity, not engagement",
                 "Give one concrete public-safe build request",
                 "Refuse re-import of private history or ops inventories into public UI",
                 "Ship = live product / tagged release / written decision — not token spend",
@@ -376,7 +486,7 @@ function HomePage() {
           <div>
             <p className="text-sm font-medium text-fg">AdventureNLearn · AOS · Hive Brain</p>
             <p className="mt-1 text-xs text-fg-subtle">
-              Public system brief + interactive demo · OPSEC clean · {SEED_PACK_VERSION}
+              Public system brief + interactive demo · private-info safe · {SEED_PACK_VERSION}
             </p>
           </div>
           <Link to="/hive" className="text-xs font-medium text-accent hover:underline">

@@ -1,8 +1,8 @@
 AOS Hive Brain
-Copyright (c) 2026 AdventureNLearn
+Copyright (c) AdventureNLearn contributors
 
-Public system brief and interactive reasoning demo.
-OPSEC-clean public ship — see docs/OPSEC.md.
+This product is public-safe educational software under the MIT License.
+See LICENSE, CREDITS.md (contributors + guiding platforms), and docs/OPSEC.md.
 
-Parts of the auth scaffold and PWA helpers originate from the Grok Build
-app-builder template and are adapted for public release (secrets removed).
+Guiding platforms and open-source dependencies are credited in CREDITS.md.
+No third-party “powered by” claim is made for pattern-inspired decision graphs.

@@ -67,7 +67,7 @@ export function SeedDownloadPanel() {
         <div className="max-w-xl space-y-3">
           <div className="inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-xs font-medium text-success">
             <ShieldCheck className="size-3.5" aria-hidden />
-            OPSEC-audited clean seed · {SEED_PACK_VERSION}
+            Public-safe clean seed · {SEED_PACK_VERSION}
           </div>
           <h2
             id="seed-heading"
