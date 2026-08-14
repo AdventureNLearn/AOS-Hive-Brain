@@ -29,6 +29,7 @@ These platforms **informed patterns, craft, or tooling**. Hive Brain is **not**
 | **[xAI · Grok](https://x.ai)** / Grok Build | Interactive build partner; live preview craft; plain-language product loops | Not an official xAI product |
 | **Decision-intelligence pattern family** (e.g. Semantica-class graphs) | Recorded decisions, causal edges, conflict flags, human gate | **Not** a Semantica dependency or “powered by” runtime |
 | **Graph Engineering research** (multi-agent sync / verification literature, including arXiv 2606.21666 class work) | Sync gates, verified brief over full dump, agreement ≠ truth | Not an implementation of any specific paper’s codebase |
+| **[Ghost Continuum](https://github.com/Pitchfork-and-Torch/ghost-continuum)** (public open-source) | Local-first command surfaces, integrity sealing patterns, progressive onboarding rails, calm scientific visual language (see `docs/references/`) | Not a dependency, not an integration, not a product co-brand |
 | **Three.js** | 3D Hive scene | Standard open-source dependency (see package.json) |
 | **TanStack** (Router / Start / Query) | App routing & structure | Dependency, not product co-brand |
 | **Vite · React · Tailwind** | Build & UI stack | Dependencies |

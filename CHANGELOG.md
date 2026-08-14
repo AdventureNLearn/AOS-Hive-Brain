@@ -2,6 +2,11 @@
 
 All notable public releases of AOS Hive Brain.
 
+## [Unreleased]
+
+### Added
+- **docs/references/local-first-command-and-integrity-patterns.md** — public reference patterns (local-first command surfaces, integrity sealing, progressive power, calm scientific language) distilled from open-source observation. OPSEC-clean. Safe for parallel agent builds.
+
 ## [0.2.0] — 2026-08-10
 
 ### Added
